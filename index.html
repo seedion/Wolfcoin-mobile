@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FFE61F" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="WolfCoin" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>WolfCoin</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="icon.svg" alt="" width="28" height="28" />
+        <span>WOLFCOIN</span>
+      </div>
+      <div id="top-total" class="top-total">…</div>
+    </header>
+
+    <main>
+      <!-- Portfolio -->
+      <section id="view-home" class="view active">
+        <article class="sunshine-card">
+          <p class="eyebrow">W · SUNSHINE</p>
+          <h1>WOLFCOIN</h1>
+          <p class="section-label">DEINE COINS</p>
+          <div class="hero-value">
+            <span id="home-total">…</span>
+            <span id="home-glyph">€</span>
+          </div>
+          <div class="pills">
+            <span id="home-total-pill" class="pill cyan">—</span>
+            <span id="home-change-pill" class="pill pink hidden">—</span>
+          </div>
+          <div class="home-spark-wrap">
+            <canvas id="home-spark" height="56"></canvas>
+            <span class="home-spark-label">24h</span>
+            <div id="home-spark-hover" class="home-spark-hover hidden">—</div>
+          </div>
+          <div id="home-math" class="math-strip home-math">
+            <div class="math-title">SO RECHNET SICH DAS</div>
+            <div id="home-math-equation" class="math-equation"></div>
+          </div>
+          <div id="home-rows" class="coin-rows"></div>
+          <p id="home-fresh" class="fresh">—</p>
+          <p id="install-hint" class="install-hint">
+            iPhone: Share → <strong>Add to Home Screen</strong><br />
+            Android: browser menu → <strong>Install app</strong>
+          </p>
+        </article>
+      </section>
+
+      <!-- Charts -->
+      <section id="view-charts" class="view">
+        <div class="charts-head">
+          <h2>CHARTS</h2>
+          <p>Ein Chart pro Coin + Gesamt in Euro.</p>
+        </div>
+
+        <div id="timeframes" class="chip-row"></div>
+
+        <div class="readout-row">
+          <div class="readout">
+            <div id="readout-value" class="readout-value">—</div>
+            <div class="readout-meta">
+              <span id="readout-label">GESAMT</span>
+              <span id="readout-date" class="muted">· —</span>
+            </div>
+          </div>
+          <button id="reload-charts" class="btn-lime" type="button">Neu laden</button>
+        </div>
+
+        <div class="math-strip">
+          <div class="math-title">SO RECHNET SICH DAS</div>
+          <div id="math-equation" class="math-equation"></div>
+        </div>
+
+        <div id="visibility" class="chip-row eyes"></div>
+        <p id="charts-status" class="status"></p>
+        <div id="chart-list" class="chart-list"></div>
+        <p class="footnote">Charts: Binance · Spot: CoinGecko</p>
+      </section>
+
+      <!-- Settings -->
+      <section id="view-settings" class="view">
+        <div class="settings-panel">
+          <h2>Einstellungen</h2>
+
+          <label class="field">
+            <span>Währung</span>
+            <select id="currency-select">
+              <option value="eur">EUR</option>
+              <option value="usd">USD</option>
+            </select>
+          </label>
+
+          <div class="field">
+            <span>Coin suchen</span>
+            <input id="coin-search" type="search" placeholder="bitcoin, eth, xlm…" autocomplete="off" />
+            <div id="search-hits" class="search-hits"></div>
+          </div>
+
+          <label class="field">
+            <span>Menge</span>
+            <input id="coin-amount" type="text" inputmode="decimal" placeholder="0.01" />
+          </label>
+
+          <button id="add-coin" class="btn-lime wide" type="button">Hinzufügen / Aktualisieren</button>
+
+          <h3>Deine Coins</h3>
+          <div id="settings-rows" class="settings-rows"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="tabbar">
+      <button data-view="home" class="tab active" type="button">Coins</button>
+      <button data-view="charts" class="tab" type="button">Charts</button>
+      <button data-view="settings" class="tab" type="button">Settings</button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js").catch(() => {});
+    }
+  </script>
+</body>
+</html>
